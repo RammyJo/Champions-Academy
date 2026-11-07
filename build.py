@@ -82,7 +82,7 @@ def program_cards():
     cards = []
     for route, program in PROGRAMS.items():
         name, stage = program["name"], program["stage"]
-        cards.append(f'<article class="program-card">{photo(program["image"], "(max-width: 700px) 100vw, 33vw")}<div>{kicker(stage)}<h3>{e(name)}</h3><p>{e(program["intro"])}</p>{link(f"Explore {name} →",route,"text-link")}</div></article>')
+        cards.append(f'<article class="program-card"><span class="program-index">0{len(cards)+1} / 03</span>{photo(program["image"], "(max-width: 700px) 100vw, 33vw")}<div>{kicker(stage)}<h3>{e(name)}</h3><p>{e(program["intro"])}</p>{link(f"Explore {name} →",route,"text-link")}</div></article>')
     return '<div class="program-grid">' + "".join(cards) + '</div>'
 
 def values_pair():
@@ -116,14 +116,14 @@ def hero_gallery():
     <button type="button" aria-label="Next photo">→</button></div></div></div>'''
 
 
-home = f'''<section class="hero"><div class="hero-copy">{kicker("Champions Academy")}
+home = f'''<div class="reading-progress" aria-hidden="true"></div><section class="hero"><div class="hero-copy">{kicker("Champions Academy")}
 <h1>Producing<br> Champions<br> <em>in Life.</em></h1>
-<p>A Christian school in San Fernando, La Union, serving Nursery through Grade 10.</p>
+<p>A Christian school in San Fernando, La Union, serving Nursery through Grade 10.</p><div class="hero-line" aria-hidden="true"><span></span><span>Faith · Learning · Life</span></div>
 <div class="actions">{button("View programs","/program/","outline light")}{button("Admissions","/admissions/")}</div>
 </div>
 {hero_gallery()}</section>'''
-home += section('<h2>Academic programs</h2>'+program_cards(),"tint")
-home += section(f'<h2>School life</h2>{gallery()}{link("See more of school life →","/school-life/","text-link")}')
+home += section('<div class="section-intro"><div><p class="eyebrow">01 / The learning journey</p><h2>Room to grow,<br><em>at every stage.</em></h2></div><p>From a first classroom to the junior high years, explore the paths through Champions Academy.</p></div>'+program_cards(),"tint programs-section")
+home += section(f'<div class="section-intro"><div><p class="eyebrow">02 / Beyond the classroom</p><h2>Life at Champions.</h2></div><p>Real moments from the school community.</p></div>{gallery()}{link("See more of school life →","/school-life/","text-link")}',"life-section")
 page("/", "Producing Champions in Life", "A Christ-centered learning community in San Fernando, La Union, with Preschool, Grade School and Junior High School.", home+invitation())
 
 def standard(route, title, intro, category, body, parent=None, image_key="celebration"):
@@ -244,8 +244,8 @@ def document(path, title, summary, body, key, missing=False):
 <meta property="og:type" content="website"><meta property="og:site_name" content="{NAME}">
 <meta property="og:title" content="{e(full_title)}"><meta property="og:description" content="{e(summary)}">
 <meta property="og:url" content="{e(canonical)}"><meta property="og:image" content="{e(ORIGIN)}/assets/{key}-960.webp">
-<link rel="icon" href="/assets/crest.png"><link rel="stylesheet" href="/styles.css?v=interaction-1">
-<script type="application/ld+json">{json.dumps(schema)}</script><script src="/navigation.js?v=interaction-1" defer></script>
+<link rel="icon" href="/assets/crest.png"><link rel="stylesheet" href="/styles.css?v=editorial-2">
+<script type="application/ld+json">{json.dumps(schema)}</script><script src="/navigation.js?v=editorial-2" defer></script>
 </head><body>{header(path)}<main id="main" tabindex="-1">{body}</main>{footer()}</body></html>'''
 
 def build():

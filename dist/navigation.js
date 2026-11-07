@@ -67,6 +67,34 @@ if (motion.matches && "IntersectionObserver" in window) {
     }
   }, { threshold: 0.15 });
 
-  document.querySelectorAll(".program-card, .values-pair article, .gallery figure, .steps li, .notice, .timeline li, .welcome > div, .approach > div, .program-detail > *, .archive-list li, .directory > div")
+  document.querySelectorAll(".section-intro h2, .section-intro > p, .program-card, .values-pair article, .gallery figure, .steps li, .notice, .timeline li, .welcome > div, .approach > div, .program-detail > *, .archive-list li, .directory > div")
     .forEach(element => observer.observe(element));
+}
+
+// Decorative movement follows the pointer and scroll position without changing navigation.
+if (motion.matches) {
+  const hero = document.querySelector(".hero");
+  const frame = document.querySelector(".hero-visual");
+  if (hero && frame) {
+    hero.addEventListener("pointermove", event => {
+      if (event.pointerType === "touch") return;
+      const rect = hero.getBoundingClientRect();
+      const x = (event.clientX - rect.left) / rect.width - .5;
+      frame.style.setProperty("--hero-tilt", `${(x * -2.4).toFixed(2)}deg`);
+    }, { passive:true });
+    hero.addEventListener("pointerleave", () => frame.style.setProperty("--hero-tilt", "0deg"));
+    const progress = document.querySelector(".reading-progress");
+    if (progress) {
+      let ticking = false;
+      addEventListener("scroll", () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          const total = document.documentElement.scrollHeight - innerHeight;
+          progress.style.setProperty("--read-progress", total > 0 ? Math.min(1,scrollY / total) : 0);
+          ticking = false;
+        });
+      }, { passive:true });
+    }
+  }
 }
