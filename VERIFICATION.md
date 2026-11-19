@@ -55,3 +55,12 @@ Source: https://www.facebook.com/sfchampionsacademy/photos/
 - `classroom-together`: Facebook photo ID 1745987454194507.
 
 Both use 480px and 940px WebP variants. Additional photo candidates are in `media-library/facebook-shortlist/` with source URLs and are not part of the generated site.
+## Photo-led community update — November 20, 2026
+
+The homepage now pairs a classroom hero with a storytelling feature, six curated community photographs, and a performance feature. School Life contains 16 locally available Facebook photographs and three existing school performance photographs. Filters group the gallery into Learning, Together, and Performances. A keyboard-accessible dialog supports previous/next viewing, source links, Escape dismissal, and focus restoration.
+
+The Facebook collection could not be fully archived during this update. The user approved proceeding with the locally available selection. No video was added. The source photographs remain in `media-library/facebook-shortlist/`; `photo-library.json` records source URLs, descriptions, crop rectangles, and output dimensions. White letterboxing was removed, images were encoded as WebP, and no source image was upscaled. Small source images are used in cards; the hero and main storytelling feature use larger images.
+
+Normal builds remain dependency-free (`python build.py`). Re-running `prepare_media.py` or `verify_site.py` requires Pillow. Prepared image files are committed, so Pillow is not needed for a deployment build.
+
+Validation: the build generated 20 routes and a 404 page; `verify_site.py` checked all 21 HTML files, 893 local references, image decoding, unique IDs, canonical tags, and image dimensions. The navigation JavaScript passed Node syntax checking. Browser checks exercised the hero slideshow, all four gallery filters, photo previous/next, Escape dismissal and focus restoration, and mobile navigation. Representative pages were checked for horizontal overflow at mobile and desktop widths. No browser console errors were observed during those checks.

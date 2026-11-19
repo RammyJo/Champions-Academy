@@ -38,3 +38,9 @@ The default canonical origin is `https://champions.edu.ph`. To intentionally cha
 The current snapshot includes the simplified homepage, soft dimensional styling, animated navigation and interaction feedback, manual hero gallery, reduced-motion support, and two newer classroom photographs from the official Facebook page. Extra shortlisted media are retained separately.
 
 School branding and photographs remain the property of their respective owners. No open-source license is granted for those assets by this repository.
+
+## Community photo library
+
+The photo-led homepage and School Life gallery use reviewed photographs from the school's Facebook page, with original sources and crop metadata in `photo-library.json`. All 16 locally available Facebook candidates are retained in `media-library/facebook-shortlist/`; the public gallery combines these with three existing performance photos. This is a curated local collection, not a complete Facebook archive.
+
+Build with `python build.py`. To re-prepare source photos, install Pillow and run `python prepare_media.py`. Run `python verify_site.py` (Pillow required) and `node --check static/navigation.js` before deployment. Source images are never upscaled; seek original high-resolution files before enlarging the smaller cards.

@@ -19,6 +19,7 @@ NAV = [
     ("Contact", "/contact/", []),
 ]
 PAGES = {}
+PHOTO_LIBRARY = json.loads((ROOT / "photo-library.json").read_text(encoding="utf-8"))
 
 def link(label, href, css=""):
     return f'<a class="{e(css)}" href="{e(href)}">{e(label)}</a>'
@@ -30,9 +31,14 @@ def kicker(label):
     return f'<p class="eyebrow">{e(label)}</p>'
 
 def photo(key, sizes="(max-width: 700px) 100vw, 50vw", eager=False):
-    alt, ratio = PHOTOS[key]
-    widths = PHOTO_WIDTHS.get(key, (480, 960, 1440))
-    width = widths[1]
+    if key in PHOTO_LIBRARY:
+        record = PHOTO_LIBRARY[key]
+        alt, ratio = record["alt"], record["width"] / record["height"]
+        widths = record["widths"]
+    else:
+        alt, ratio = PHOTOS[key]
+        widths = PHOTO_WIDTHS.get(key, (480, 960, 1440))
+    width = widths[-1]
     sources = ", ".join(f"/assets/{key}-{w}.webp {w}w" for w in widths)
     priority = 'fetchpriority="high"' if eager else 'loading="lazy"'
     return f'<img src="/assets/{key}-{width}.webp" srcset="{sources}" sizes="{sizes}" alt="{e(alt)}" width="{width}" height="{round(width/ratio)}" decoding="async" {priority}>'
@@ -82,7 +88,7 @@ def program_cards():
     cards = []
     for route, program in PROGRAMS.items():
         name, stage = program["name"], program["stage"]
-        cards.append(f'<article class="program-card"><span class="program-index">0{len(cards)+1} / 03</span>{photo(program["image"], "(max-width: 700px) 100vw, 33vw")}<div>{kicker(stage)}<h3>{e(name)}</h3><p>{e(program["intro"])}</p>{link(f"Explore {name} →",route,"text-link")}</div></article>')
+        cards.append(f'<article class="program-card">{photo(program["image"], "(max-width: 700px) 100vw, 33vw")}<div>{kicker(stage)}<h3>{e(name)}</h3><p>{e(program["intro"])}</p>{link(f"Explore {name}",route,"text-link")}</div></article>')
     return '<div class="program-grid">' + "".join(cards) + '</div>'
 
 def values_pair():
@@ -94,16 +100,29 @@ def invitation():
     <div class="actions">{button("Begin pre-registration","/pre-register/")}{button("View requirements","/requirements/","outline light")}{link("Contact Admissions →","mailto:"+EMAIL,"text-link")}</div>''',"invite")
 
 def gallery():
-    return '<div class="gallery">' + "".join(
-        f'<figure>{photo(key)}<figcaption>{label}</figcaption></figure>'
-        for key, label in [("campus","Our campus in Santiago Norte"),("school-event","A school event"),("classroom-activity","Working on classroom activities")]
-    ) + '</div>'
+    choices = ["finding-voice", "bright-smile", "digital-discovery", "shared-joy", "little-discoveries", "teachers-together"]
+    return '<div class="moments-grid">' + ''.join(moment_card(key) for key in choices) + '</div>'
+
+
+def moment_card(key):
+    record = PHOTO_LIBRARY[key]
+    href = f'/assets/{key}-{record["widths"][-1]}.webp'
+    return f'''<figure class="moment-card" data-category="{record['category']}">
+    <a class="photo-open" href="{href}" data-caption="{e(record['caption'])}" data-source="{e(record['source'])}" aria-label="View photo: {e(record['caption'])}">
+    {photo(key, '(max-width: 600px) 46vw, (max-width: 940px) 30vw, 330px')}<span class="photo-enlarge" aria-hidden="true">View photo</span></a>
+    <figcaption><span>{e(record['category'])}</span>{e(record['caption'])}</figcaption></figure>'''
+
+
+def photo_viewer():
+    return '''<dialog class="photo-dialog" aria-labelledby="viewer-caption"><div class="viewer-toolbar"><span>Life at Champions</span><button type="button" data-viewer-close>Close</button></div>
+    <div class="viewer-image"><img alt="" id="viewer-image"></div><div class="viewer-bottom"><div><p id="viewer-caption"></p><a id="viewer-source" href="https://www.facebook.com/sfchampionsacademy">View photo source</a></div>
+    <div class="viewer-navigation"><button type="button" data-viewer-prev aria-label="Previous gallery photo">Previous</button><button type="button" data-viewer-next aria-label="Next gallery photo">Next</button></div></div></dialog>'''
 
 def hero_gallery():
     slides = [
-        ("classroom-together", "A classroom at Champions Academy"),
-        ("preschool", "Learning together in Preschool"),
-        ("junior-high", "Inside a Junior High classroom"),
+        ("classroom-together", "A place to learn. A place to belong."),
+        ("classroom-activity", "Learning by doing, every day."),
+        ("celebration", "Growing in confidence, together."),
     ]
     panels = "".join(
         f'<figure class="hero-slide" data-caption="{e(caption)}" {"hidden" if index else ""}>'
@@ -112,19 +131,22 @@ def hero_gallery():
     )
     return f'''<div class="hero-visual" aria-label="Life at Champions Academy">{panels}
     <div class="hero-controls"><p id="hero-caption" aria-live="polite">{slides[0][1]}</p>
-    <div class="hero-buttons" hidden><button type="button" aria-label="Previous photo">←</button>
-    <button type="button" aria-label="Next photo">→</button></div></div></div>'''
+    <div class="hero-buttons" hidden><button type="button" aria-label="Previous photo">Previous</button>
+    <button type="button" aria-label="Next photo">Next</button></div></div></div>'''
 
 
-home = f'''<div class="reading-progress" aria-hidden="true"></div><section class="hero"><div class="hero-copy">{kicker("Champions Academy")}
+home = f'''<div class="reading-progress" aria-hidden="true"></div><section class="hero"><div class="hero-copy">{kicker("Faith. Learning. Life.")}
 <h1>Producing<br> Champions<br> <em>in Life.</em></h1>
-<p>A Christian school in San Fernando, La Union, serving Nursery through Grade 10.</p><div class="hero-line" aria-hidden="true"><span></span><span>Faith · Learning · Life</span></div>
-<div class="actions">{button("View programs","/program/","outline light")}{button("Admissions","/admissions/")}</div>
+<p>Big discoveries. Brave little steps. A community to grow with.</p><p class="hero-location">A Christ-centered school in San Fernando, La Union.<br>Nursery through Grade 10.</p>
+<div class="actions">{button("Explore programs","/program/")}{button("School life","/school-life/","outline light")}</div>
 </div>
 {hero_gallery()}</section>'''
-home += section('<div class="section-intro"><div><p class="eyebrow">01 / The learning journey</p><h2>Room to grow,<br><em>at every stage.</em></h2></div><p>From a first classroom to the junior high years, explore the paths through Champions Academy.</p></div>'+program_cards(),"tint programs-section")
-home += section(f'<div class="section-intro"><div><p class="eyebrow">02 / Beyond the classroom</p><h2>Life at Champions.</h2></div><p>Real moments from the school community.</p></div>{gallery()}{link("See more of school life →","/school-life/","text-link")}',"life-section")
-page("/", "Producing Champions in Life", "A Christ-centered learning community in San Fernando, La Union, with Preschool, Grade School and Junior High School.", home+invitation())
+home += '<div class="community-strip"><div class="wrap"><p>Rooted in faith.</p><p>Alive with curiosity.</p><p>Growing together.</p></div></div>'
+home += section(f'''<div class="story-layout"><div class="story-copy">{kicker("The heart of our school")}<h2>Seen. Encouraged.<br><em>Ready to grow.</em></h2><p>Confidence begins with a hand raised, a question asked, a smile shared. Our classrooms make room for children to explore, participate, and learn alongside one another.</p><p>Through Christian education and a close partnership with families, we help children build knowledge, character, and skills for life.</p>{link("Get to know Champions Academy", "/about/", "text-link")}</div><div class="story-collage"><figure class="story-main">{photo("storytelling", "(max-width:700px) 90vw, 480px")}<figcaption>A little imagination. A world of discovery.</figcaption></figure><figure class="story-small">{photo("bright-smile", "210px")}<figcaption>Room to shine.</figcaption></figure></div></div>''', "heart-section")
+home += section('<div class="section-intro"><div>'+kicker("The learning journey")+'<h2>Room to grow,<br><em>at every stage.</em></h2></div><p>From a first classroom to the junior high years, find a learning journey for your child.</p></div>'+program_cards(),"tint programs-section")
+home += section(f'<div class="section-intro"><div>{kicker("Real faces. Real moments.")}<h2>A school full<br>of <em>life.</em></h2></div><p>Curiosity in action. The courage to join in. The joy of being part of something together.</p></div>{gallery()}<div class="gallery-footer"><p>A glimpse of our community, through photographs shared by the school.</p>{button("Explore school life","/school-life/","outline")}</div>',"life-section")
+home += section(f'''<div class="performance-layout"><figure>{photo("celebration", "(max-width:700px) 100vw, 60vw")}</figure><div>{kicker("More than a classroom")}<h2>Finding a voice.<br><em>Sharing the moment.</em></h2><p>Learning takes many forms. From classroom participation to school presentations, students have opportunities to express themselves and grow with others.</p>{link("More moments from school life", "/school-life/", "text-link")}</div></div>''', "performance-section")
+page("/", "Producing Champions in Life", "A Christ-centered learning community in San Fernando, La Union, with Preschool, Grade School and Junior High School.", home+invitation(), "classroom-together")
 
 def standard(route, title, intro, category, body, parent=None, image_key="celebration"):
     page(route,title,intro,heading(title,intro,category,parent)+body,image_key)
@@ -190,8 +212,12 @@ standard("/pre-register/","Pre-registration","Parents and guardians can start th
     <p>Review the school’s published requirements and ask Admissions about current intake, eligibility, or how learner information is handled.</p>
     {link("Review requirements →","/requirements/","text-link")}{link("Registration privacy →","/privacy/","text-link")}{link("Email Admissions →","mailto:"+EMAIL,"text-link")}</aside></div>'''),("Admissions","/admissions/"))
 
-standard("/school-life/","School life","See the campus and some of the ways students learn and take part in school activities.","Campus & community",
-    section('<h2>Campus and learning environment</h2>'+gallery()+link("See news and events →","/news/","text-link")),image_key="campus")
+PERFORMANCE_SOURCES = {"celebration": "https://champions.edu.ph/wp-content/uploads/2025/06/DSCF4803-scaled.jpg", "student-performance": "https://champions.edu.ph/wp-content/uploads/2025/06/DSCF4810-scaled.jpg", "school-event": "https://champions.edu.ph/wp-content/uploads/2025/06/DSCF4814-scaled.jpg"}
+school_gallery = '<div class="gallery-filters" hidden role="group" aria-label="Filter school photographs">' + ''.join(f'<button type="button" data-filter="{label}" aria-pressed="{str(label == "All moments").lower()}">{label}</button>' for label in ["All moments", "Learning", "Together", "Performances"]) + '</div><p class="gallery-count" aria-live="polite"></p>'
+school_gallery += '<div class="moments-grid all-moments">' + ''.join(moment_card(key) for key in ["finding-voice", "bright-smile", "little-discoveries", "shared-joy", "digital-discovery", "teachers-together", "joyful-classroom", "screen-skills", "arriving-together", "storytelling", "hands-up", "classmates", "learning-together", "ready-to-join", "classroom-welcome", "classroom-connection"]) + ''.join(f'<figure class="moment-card" data-category="Performances"><a class="photo-open" href="/assets/{key}-1440.webp" data-caption="{label}" data-source="{PERFORMANCE_SOURCES[key]}" aria-label="View photo: {label}">{photo(key, "(max-width:600px) 46vw, 330px")}<span class="photo-enlarge" aria-hidden="true">View photo</span></a><figcaption><span>Performances</span>{label}</figcaption></figure>' for key,label in [("celebration","Taking part, together"),("student-performance","A moment on stage"),("school-event","Sharing the stage")]) + '</div>'
+standard("/school-life/","This is life at Champions.","The small discoveries, shared smiles, and moments of courage that make a school community.","Campus & community",
+    section('<div class="section-intro"><div>'+kicker("Our community, in pictures")+'<h2>Everyday moments.<br><em>Lasting meaning.</em></h2></div><p>Explore the photographs. Open a moment to take a closer look.</p></div>'+school_gallery, "life-section")+
+    section(f'<div class="social-story"><div>{kicker("Keep in touch")}<h2>There is more<br>to the story.</h2><p>Find more photographs, school videos, and current updates on the official Champions Academy Facebook page.</p>{button("Visit our Facebook page", FACEBOOK)}</div><figure>{photo("campus")}<figcaption>Our campus in Santiago Norte, San Fernando, La Union.</figcaption></figure></div>',"tint")+invitation(),image_key="classroom-together")
 def announcements():
     if not ANNOUNCEMENTS:
         return f'<div class="notice"><h2>School updates</h2><p>For current announcements and events, visit the school’s official Facebook page or contact the school office.</p>{button("Visit Champions Academy on Facebook ↗",FACEBOOK)}</div>'
@@ -244,9 +270,9 @@ def document(path, title, summary, body, key, missing=False):
 <meta property="og:type" content="website"><meta property="og:site_name" content="{NAME}">
 <meta property="og:title" content="{e(full_title)}"><meta property="og:description" content="{e(summary)}">
 <meta property="og:url" content="{e(canonical)}"><meta property="og:image" content="{e(ORIGIN)}/assets/{key}-960.webp">
-<link rel="icon" href="/assets/crest.png"><link rel="stylesheet" href="/styles.css?v=editorial-2">
-<script type="application/ld+json">{json.dumps(schema)}</script><script src="/navigation.js?v=editorial-2" defer></script>
-</head><body>{header(path)}<main id="main" tabindex="-1">{body}</main>{footer()}</body></html>'''
+<link rel="icon" href="/assets/crest.png"><link rel="stylesheet" href="/styles.css?v=community-3">
+<script type="application/ld+json">{json.dumps(schema)}</script><script src="/navigation.js?v=community-3" defer></script>
+</head><body>{header(path)}<main id="main" tabindex="-1">{body}</main>{footer()}{photo_viewer() if 'photo-open' in body else ''}</body></html>'''
 
 def build():
     if DIST.exists():

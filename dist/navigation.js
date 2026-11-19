@@ -67,22 +67,15 @@ if (motion.matches && "IntersectionObserver" in window) {
     }
   }, { threshold: 0.15 });
 
-  document.querySelectorAll(".section-intro h2, .section-intro > p, .program-card, .values-pair article, .gallery figure, .steps li, .notice, .timeline li, .welcome > div, .approach > div, .program-detail > *, .archive-list li, .directory > div")
+  document.querySelectorAll(".section-intro h2, .section-intro > p, .program-card, .values-pair article, .moment-card, .steps li, .notice, .timeline li, .story-layout > *, .performance-layout > *, .program-detail > *, .archive-list li, .directory > div")
     .forEach(element => observer.observe(element));
 }
 
-// Decorative movement follows the pointer and scroll position without changing navigation.
+// Reading progress is decorative and respects reduced-motion preferences.
 if (motion.matches) {
   const hero = document.querySelector(".hero");
   const frame = document.querySelector(".hero-visual");
   if (hero && frame) {
-    hero.addEventListener("pointermove", event => {
-      if (event.pointerType === "touch") return;
-      const rect = hero.getBoundingClientRect();
-      const x = (event.clientX - rect.left) / rect.width - .5;
-      frame.style.setProperty("--hero-tilt", `${(x * -2.4).toFixed(2)}deg`);
-    }, { passive:true });
-    hero.addEventListener("pointerleave", () => frame.style.setProperty("--hero-tilt", "0deg"));
     const progress = document.querySelector(".reading-progress");
     if (progress) {
       let ticking = false;
@@ -97,4 +90,74 @@ if (motion.matches) {
       }, { passive:true });
     }
   }
+}
+
+const filters = document.querySelector(".gallery-filters");
+const cards = [...document.querySelectorAll(".all-moments .moment-card")];
+if (filters) {
+  const count = document.querySelector(".gallery-count");
+  function filterPhotos(category) {
+    filters.querySelectorAll("button").forEach(button => {
+      button.setAttribute("aria-pressed", String(button.dataset.filter === category));
+    });
+    cards.forEach(card => { card.hidden = category !== "All moments" && card.dataset.category !== category; });
+    const shown = cards.filter(card => !card.hidden).length;
+    count.textContent = `${shown} ${shown === 1 ? "moment" : "moments"}${category === "All moments" ? " from our community" : ` · ${category}`}`;
+  }
+  filters.querySelectorAll("button").forEach(button => button.addEventListener("click", () => filterPhotos(button.dataset.filter)));
+  filters.hidden = false;
+  filterPhotos("All moments");
+}
+
+const viewer = document.querySelector(".photo-dialog");
+const photoLinks = [...document.querySelectorAll(".photo-open")];
+if (viewer && typeof viewer.showModal === "function") {
+  const image = viewer.querySelector("#viewer-image");
+  const caption = viewer.querySelector("#viewer-caption");
+  const source = viewer.querySelector("#viewer-source");
+  let selected = null;
+  let returnFocus = null;
+  let previousOverflow = "";
+
+  function showPhoto(link) {
+    selected = link;
+    image.src = link.href;
+    image.alt = link.querySelector("img").alt;
+    caption.textContent = link.dataset.caption;
+    source.href = link.dataset.source;
+  }
+  function move(offset) {
+    const visible = photoLinks.filter(link => !link.closest("figure").hidden);
+    showPhoto(visible[(visible.indexOf(selected) + offset + visible.length) % visible.length]);
+  }
+  photoLinks.forEach(link => link.addEventListener("click", event => {
+    // Preserve normal new-tab and download link behavior.
+    if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    returnFocus = link;
+    showPhoto(link);
+    previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    viewer.showModal();
+    viewer.querySelector("[data-viewer-close]").focus();
+  }));
+  viewer.querySelector("[data-viewer-close]").addEventListener("click", () => viewer.close());
+  viewer.querySelector("[data-viewer-prev]").addEventListener("click", () => move(-1));
+  viewer.querySelector("[data-viewer-next]").addEventListener("click", () => move(1));
+  viewer.addEventListener("keydown", event => {
+    if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+      event.preventDefault();
+      move(event.key === "ArrowLeft" ? -1 : 1);
+    }
+  });
+  viewer.addEventListener("click", event => {
+    if (event.target === viewer) {
+      const rect = viewer.getBoundingClientRect();
+      if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) viewer.close();
+    }
+  });
+  viewer.addEventListener("close", () => {
+    document.body.style.overflow = previousOverflow;
+    returnFocus?.focus();
+  });
 }

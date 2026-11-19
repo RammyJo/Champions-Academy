@@ -1,0 +1,306 @@
+{
+  "classroom-welcome": {
+    "alt": "Students following a classroom presentation",
+    "category": "Learning",
+    "caption": "A classroom full of possibilities",
+    "widths": [
+      320,
+      414
+    ],
+    "width": 414,
+    "height": 279,
+    "source": "https://www.facebook.com/photo.php?fbid=1745987390861180",
+    "original": "photo-06.jpg",
+    "crop": [
+      0,
+      68,
+      414,
+      347
+    ]
+  },
+  "learning-together": {
+    "alt": "Students sitting together, with several raising their hands",
+    "category": "Together",
+    "caption": "Learning alongside one another",
+    "widths": [
+      320,
+      414
+    ],
+    "width": 414,
+    "height": 279,
+    "source": "https://www.facebook.com/photo.php?fbid=1745987340861185",
+    "original": "photo-07.jpg",
+    "crop": [
+      0,
+      68,
+      414,
+      347
+    ]
+  },
+  "finding-voice": {
+    "alt": "A student standing beside her desk and raising her hand",
+    "category": "Learning",
+    "caption": "The courage to take part",
+    "widths": [
+      320,
+      414
+    ],
+    "width": 414,
+    "height": 414,
+    "source": "https://www.facebook.com/photo.php?fbid=1745987294194523",
+    "original": "photo-08.jpg",
+    "crop": [
+      0,
+      0,
+      414,
+      414
+    ]
+  },
+  "arriving-together": {
+    "alt": "Two young students with backpacks beside an adult at a doorway",
+    "category": "Together",
+    "caption": "A new day, together",
+    "widths": [
+      320,
+      414
+    ],
+    "width": 414,
+    "height": 414,
+    "source": "https://www.facebook.com/photo.php?fbid=1745987280861191",
+    "original": "photo-09.jpg",
+    "crop": [
+      0,
+      0,
+      414,
+      414
+    ]
+  },
+  "bright-smile": {
+    "alt": "A smiling student at her desk giving a thumbs-up",
+    "category": "Together",
+    "caption": "Little moments of confidence",
+    "widths": [
+      320,
+      414
+    ],
+    "width": 414,
+    "height": 414,
+    "source": "https://www.facebook.com/photo.php?fbid=1745987244194528",
+    "original": "photo-10.jpg",
+    "crop": [
+      0,
+      0,
+      414,
+      414
+    ]
+  },
+  "joyful-classroom": {
+    "alt": "Students and their teacher smiling and waving in a classroom",
+    "category": "Together",
+    "caption": "Joy that fills a classroom",
+    "widths": [
+      320,
+      414
+    ],
+    "width": 414,
+    "height": 298,
+    "source": "https://www.facebook.com/photo.php?fbid=1745987197527866",
+    "original": "photo-11.jpg",
+    "crop": [
+      0,
+      58,
+      414,
+      356
+    ]
+  },
+  "classroom-connection": {
+    "alt": "Students and a teacher waving from their classroom",
+    "category": "Together",
+    "caption": "A place to belong",
+    "widths": [
+      320,
+      414
+    ],
+    "width": 414,
+    "height": 312,
+    "source": "https://www.facebook.com/photo.php?fbid=1745987180861201",
+    "original": "photo-12.jpg",
+    "crop": [
+      0,
+      51,
+      414,
+      363
+    ]
+  },
+  "shared-joy": {
+    "alt": "A group of students and an adult raising their arms and smiling",
+    "category": "Together",
+    "caption": "Better when we are together",
+    "widths": [
+      320,
+      414
+    ],
+    "width": 414,
+    "height": 414,
+    "source": "https://www.facebook.com/photo.php?fbid=1745987157527870",
+    "original": "photo-13.jpg",
+    "crop": [
+      0,
+      0,
+      414,
+      414
+    ]
+  },
+  "digital-discovery": {
+    "alt": "A student concentrating on a tablet at his desk",
+    "category": "Learning",
+    "caption": "Curiosity in action",
+    "widths": [
+      320,
+      414
+    ],
+    "width": 414,
+    "height": 312,
+    "source": "https://www.facebook.com/photo.php?fbid=1745987107527875",
+    "original": "photo-14.jpg",
+    "crop": [
+      0,
+      51,
+      414,
+      363
+    ]
+  },
+  "screen-skills": {
+    "alt": "A smiling student holding a tablet in class",
+    "category": "Learning",
+    "caption": "Discovering new ways to learn",
+    "widths": [
+      320,
+      414
+    ],
+    "width": 414,
+    "height": 328,
+    "source": "https://www.facebook.com/photo.php?fbid=1745987087527877",
+    "original": "photo-15.jpg",
+    "crop": [
+      0,
+      41,
+      414,
+      369
+    ]
+  },
+  "little-discoveries": {
+    "alt": "Young learners raising their hands around a classroom table",
+    "category": "Learning",
+    "caption": "Small hands, big curiosity",
+    "widths": [
+      320,
+      414
+    ],
+    "width": 414,
+    "height": 414,
+    "source": "https://www.facebook.com/photo.php?fbid=1745987064194546",
+    "original": "photo-16.jpg",
+    "crop": [
+      0,
+      0,
+      414,
+      414
+    ]
+  },
+  "classmates": {
+    "alt": "Students seated together and waving from their desks",
+    "category": "Together",
+    "caption": "Growing with friends",
+    "widths": [
+      320,
+      414
+    ],
+    "width": 414,
+    "height": 310,
+    "source": "https://www.facebook.com/photo.php?fbid=1745987007527885",
+    "original": "photo-17.jpg",
+    "crop": [
+      0,
+      52,
+      414,
+      362
+    ]
+  },
+  "teachers-together": {
+    "alt": "Students and an adult smiling together in a classroom",
+    "category": "Together",
+    "caption": "Learning is a shared journey",
+    "widths": [
+      320,
+      414
+    ],
+    "width": 414,
+    "height": 326,
+    "source": "https://www.facebook.com/photo.php?fbid=1745986960861223",
+    "original": "photo-18.jpg",
+    "crop": [
+      0,
+      44,
+      414,
+      370
+    ]
+  },
+  "ready-to-join": {
+    "alt": "Children smiling and waving from their classroom desks",
+    "category": "Learning",
+    "caption": "Ready to join in",
+    "widths": [
+      320,
+      414
+    ],
+    "width": 414,
+    "height": 332,
+    "source": "https://www.facebook.com/photo.php?fbid=1745986937527892",
+    "original": "photo-19.jpg",
+    "crop": [
+      0,
+      41,
+      414,
+      373
+    ]
+  },
+  "hands-up": {
+    "alt": "Young students raising their hands in a classroom",
+    "category": "Learning",
+    "caption": "Every voice has a place",
+    "widths": [
+      320,
+      414
+    ],
+    "width": 414,
+    "height": 302,
+    "source": "https://www.facebook.com/photo.php?fbid=1745986914194561",
+    "original": "photo-20.jpg",
+    "crop": [
+      0,
+      56,
+      414,
+      358
+    ]
+  },
+  "storytelling": {
+    "alt": "A speaker holding a microphone and an eagle puppet during an activity",
+    "category": "Learning",
+    "caption": "Bringing a story to life",
+    "widths": [
+      320,
+      940
+    ],
+    "width": 940,
+    "height": 788,
+    "source": "https://www.facebook.com/photo.php?fbid=1745987547527831",
+    "original": "photo-01.jpg",
+    "crop": [
+      0,
+      0,
+      940,
+      788
+    ]
+  }
+}
