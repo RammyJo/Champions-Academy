@@ -41,6 +41,8 @@ School branding and photographs remain the property of their respective owners. 
 
 ## Community photo library
 
-The photo-led homepage and School Life gallery use reviewed photographs from the school's Facebook page, with original sources and crop metadata in `photo-library.json`. All 16 locally available Facebook candidates are retained in `media-library/facebook-shortlist/`; the public gallery combines these with three existing performance photos. This is a curated local collection, not a complete Facebook archive.
+The photo-led homepage and School Life gallery use reviewed photographs from the school's Facebook page, with original sources and crop metadata in `photo-library.json`. All 16 locally available Facebook candidates are retained in `media-library/facebook-shortlist/`; the public gallery uses only these 16 new Facebook photos. This is a curated local collection, not a complete Facebook archive.
 
 Build with `python build.py`. To re-prepare source photos, install Pillow and run `python prepare_media.py`. Run `python verify_site.py` (Pillow required) and `node --check static/navigation.js` before deployment. Source images are never upscaled; seek original high-resolution files before enlarging the smaller cards.
+
+The current release removes all 22 old photo variants from source assets and generated output. Hero, programs, About, Contact, background photography, gallery, and social-sharing images now use only the new Facebook selection. The school crest remains the brand logo.

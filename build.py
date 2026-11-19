@@ -31,13 +31,9 @@ def kicker(label):
     return f'<p class="eyebrow">{e(label)}</p>'
 
 def photo(key, sizes="(max-width: 700px) 100vw, 50vw", eager=False):
-    if key in PHOTO_LIBRARY:
-        record = PHOTO_LIBRARY[key]
-        alt, ratio = record["alt"], record["width"] / record["height"]
-        widths = record["widths"]
-    else:
-        alt, ratio = PHOTOS[key]
-        widths = PHOTO_WIDTHS.get(key, (480, 960, 1440))
+    record = PHOTO_LIBRARY[key]
+    alt, ratio = record["alt"], record["width"] / record["height"]
+    widths = record["widths"]
     width = widths[-1]
     sources = ", ".join(f"/assets/{key}-{w}.webp {w}w" for w in widths)
     priority = 'fetchpriority="high"' if eager else 'loading="lazy"'
@@ -52,7 +48,7 @@ def heading(title, summary, category, parent=None):
         trail += ' <span aria-hidden="true">/</span> ' + link(*parent)
     return f'<section class="pagehead"><div class="wrap"><nav class="crumb" aria-label="Breadcrumb">{trail} <span aria-hidden="true">/</span> <span aria-current="page">{e(title)}</span></nav>{kicker(category)}<h1>{e(title)}</h1><p>{e(summary)}</p></div></section>'
 
-def page(path, title, summary, body, image_key="celebration"):
+def page(path, title, summary, body, image_key="shared-joy"):
     PAGES[path] = (title, summary, body, image_key)
 
 def brand():
@@ -120,9 +116,9 @@ def photo_viewer():
 
 def hero_gallery():
     slides = [
-        ("classroom-together", "A place to learn. A place to belong."),
-        ("classroom-activity", "Learning by doing, every day."),
-        ("celebration", "Growing in confidence, together."),
+        ("finding-voice", "The courage to take part."),
+        ("little-discoveries", "Curiosity comes alive, together."),
+        ("joyful-classroom", "A place to learn. A place to belong."),
     ]
     panels = "".join(
         f'<figure class="hero-slide" data-caption="{e(caption)}" {"hidden" if index else ""}>'
@@ -145,15 +141,15 @@ home += '<div class="community-strip"><div class="wrap"><p>Rooted in faith.</p><
 home += section(f'''<div class="story-layout"><div class="story-copy">{kicker("The heart of our school")}<h2>Seen. Encouraged.<br><em>Ready to grow.</em></h2><p>Confidence begins with a hand raised, a question asked, a smile shared. Our classrooms make room for children to explore, participate, and learn alongside one another.</p><p>Through Christian education and a close partnership with families, we help children build knowledge, character, and skills for life.</p>{link("Get to know Champions Academy", "/about/", "text-link")}</div><div class="story-collage"><figure class="story-main">{photo("storytelling", "(max-width:700px) 90vw, 480px")}<figcaption>A little imagination. A world of discovery.</figcaption></figure><figure class="story-small">{photo("bright-smile", "210px")}<figcaption>Room to shine.</figcaption></figure></div></div>''', "heart-section")
 home += section('<div class="section-intro"><div>'+kicker("The learning journey")+'<h2>Room to grow,<br><em>at every stage.</em></h2></div><p>From a first classroom to the junior high years, find a learning journey for your child.</p></div>'+program_cards(),"tint programs-section")
 home += section(f'<div class="section-intro"><div>{kicker("Real faces. Real moments.")}<h2>A school full<br>of <em>life.</em></h2></div><p>Curiosity in action. The courage to join in. The joy of being part of something together.</p></div>{gallery()}<div class="gallery-footer"><p>A glimpse of our community, through photographs shared by the school.</p>{button("Explore school life","/school-life/","outline")}</div>',"life-section")
-home += section(f'''<div class="performance-layout"><figure>{photo("celebration", "(max-width:700px) 100vw, 60vw")}</figure><div>{kicker("More than a classroom")}<h2>Finding a voice.<br><em>Sharing the moment.</em></h2><p>Learning takes many forms. From classroom participation to school presentations, students have opportunities to express themselves and grow with others.</p>{link("More moments from school life", "/school-life/", "text-link")}</div></div>''', "performance-section")
-page("/", "Producing Champions in Life", "A Christ-centered learning community in San Fernando, La Union, with Preschool, Grade School and Junior High School.", home+invitation(), "classroom-together")
+home += section(f'''<div class="performance-layout"><figure>{photo("shared-joy", "(max-width:700px) 100vw, 60vw")}</figure><div>{kicker("Growing together")}<h2>Small discoveries.<br><em>Shared joy.</em></h2><p>A hand raised. A question shared. A classroom full of smiles. Everyday moments give children room to participate, connect, and grow with one another.</p>{link("More moments from school life", "/school-life/", "text-link")}</div></div>''', "performance-section")
+page("/", "Producing Champions in Life", "A Christ-centered learning community in San Fernando, La Union, with Preschool, Grade School and Junior High School.", home+invitation(), "joyful-classroom")
 
-def standard(route, title, intro, category, body, parent=None, image_key="celebration"):
+def standard(route, title, intro, category, body, parent=None, image_key="shared-joy"):
     page(route,title,intro,heading(title,intro,category,parent)+body,image_key)
 
 standard("/about/","About Champions Academy","Christian education shaped by faith, active learning, and close partnership with families.","About",
     section(f'''<div class="split"><div><h2>How children learn</h2><p>Children come to school curious and capable. At Champions Academy, they build understanding by asking questions, working together, and connecting what they learn to everyday life.</p>
-    <p>Teachers and families share responsibility for helping children develop academic skills and grow in Christian character.</p></div>{photo("campus")}</div>''')+
+    <p>Teachers and families share responsibility for helping children develop academic skills and grow in Christian character.</p></div>{photo("learning-together")}</div>''')+
     section(f'<h2>Get to know the school</h2><div class="actions">{button("Our story","/history/")}{button("Vision, mission & values","/values/","outline")}{button("Leadership & faculty","/faculty/","outline")}</div>',"tint"))
 
 standard("/history/","Our story","From a community outreach to a school serving children from Preschool through Junior High.","About",
@@ -212,12 +208,11 @@ standard("/pre-register/","Pre-registration","Parents and guardians can start th
     <p>Review the school’s published requirements and ask Admissions about current intake, eligibility, or how learner information is handled.</p>
     {link("Review requirements →","/requirements/","text-link")}{link("Registration privacy →","/privacy/","text-link")}{link("Email Admissions →","mailto:"+EMAIL,"text-link")}</aside></div>'''),("Admissions","/admissions/"))
 
-PERFORMANCE_SOURCES = {"celebration": "https://champions.edu.ph/wp-content/uploads/2025/06/DSCF4803-scaled.jpg", "student-performance": "https://champions.edu.ph/wp-content/uploads/2025/06/DSCF4810-scaled.jpg", "school-event": "https://champions.edu.ph/wp-content/uploads/2025/06/DSCF4814-scaled.jpg"}
-school_gallery = '<div class="gallery-filters" hidden role="group" aria-label="Filter school photographs">' + ''.join(f'<button type="button" data-filter="{label}" aria-pressed="{str(label == "All moments").lower()}">{label}</button>' for label in ["All moments", "Learning", "Together", "Performances"]) + '</div><p class="gallery-count" aria-live="polite"></p>'
-school_gallery += '<div class="moments-grid all-moments">' + ''.join(moment_card(key) for key in ["finding-voice", "bright-smile", "little-discoveries", "shared-joy", "digital-discovery", "teachers-together", "joyful-classroom", "screen-skills", "arriving-together", "storytelling", "hands-up", "classmates", "learning-together", "ready-to-join", "classroom-welcome", "classroom-connection"]) + ''.join(f'<figure class="moment-card" data-category="Performances"><a class="photo-open" href="/assets/{key}-1440.webp" data-caption="{label}" data-source="{PERFORMANCE_SOURCES[key]}" aria-label="View photo: {label}">{photo(key, "(max-width:600px) 46vw, 330px")}<span class="photo-enlarge" aria-hidden="true">View photo</span></a><figcaption><span>Performances</span>{label}</figcaption></figure>' for key,label in [("celebration","Taking part, together"),("student-performance","A moment on stage"),("school-event","Sharing the stage")]) + '</div>'
+school_gallery = '<div class="gallery-filters" hidden role="group" aria-label="Filter school photographs">' + ''.join(f'<button type="button" data-filter="{label}" aria-pressed="{str(label == "All moments").lower()}">{label}</button>' for label in ["All moments", "Learning", "Together"]) + '</div><p class="gallery-count" aria-live="polite"></p>'
+school_gallery += '<div class="moments-grid all-moments">' + ''.join(moment_card(key) for key in ["finding-voice", "bright-smile", "little-discoveries", "shared-joy", "digital-discovery", "teachers-together", "joyful-classroom", "screen-skills", "arriving-together", "storytelling", "hands-up", "classmates", "learning-together", "ready-to-join", "classroom-welcome", "classroom-connection"]) + '</div>'
 standard("/school-life/","This is life at Champions.","The small discoveries, shared smiles, and moments of courage that make a school community.","Campus & community",
     section('<div class="section-intro"><div>'+kicker("Our community, in pictures")+'<h2>Everyday moments.<br><em>Lasting meaning.</em></h2></div><p>Explore the photographs. Open a moment to take a closer look.</p></div>'+school_gallery, "life-section")+
-    section(f'<div class="social-story"><div>{kicker("Keep in touch")}<h2>There is more<br>to the story.</h2><p>Find more photographs, school videos, and current updates on the official Champions Academy Facebook page.</p>{button("Visit our Facebook page", FACEBOOK)}</div><figure>{photo("campus")}<figcaption>Our campus in Santiago Norte, San Fernando, La Union.</figcaption></figure></div>',"tint")+invitation(),image_key="classroom-together")
+    section(f'<div class="social-story"><div>{kicker("Keep in touch")}<h2>There is more<br>to the story.</h2><p>Find more photographs, school videos, and current updates on the official Champions Academy Facebook page.</p>{button("Visit our Facebook page", FACEBOOK)}</div><figure>{photo("learning-together")}<figcaption>Learning and growing together at Champions Academy.</figcaption></figure></div>',"tint")+invitation(),image_key="joyful-classroom")
 def announcements():
     if not ANNOUNCEMENTS:
         return f'<div class="notice"><h2>School updates</h2><p>For current announcements and events, visit the school’s official Facebook page or contact the school office.</p>{button("Visit Champions Academy on Facebook ↗",FACEBOOK)}</div>'
@@ -241,8 +236,8 @@ standard("/contact/","Contact Champions Academy","Get in touch with the school o
     section(f'''<div class="split"><div><h2>School office</h2><address>{e(ADDRESS)}</address>
     <p>Monday–Friday, 8:00 AM–4:00 PM</p>
     <p>{link("(072) 700 2700","tel:+63727002700","text-link")}<br>{link("0976 111 0320","tel:+639761110320","text-link")}</p>
-    <div class="actions">{button("Get directions ↗",MAP)}{link("Ask Admissions →","mailto:"+EMAIL,"text-link")}</div></div>{photo("campus")}</div>''')+
-    section('<h2>Email directory</h2><dl class="directory">'+''.join(f'<div><dt>{label}</dt><dd>{link(email,"mailto:"+email)}</dd></div>' for label,email in directory)+'</dl>',"tint"),image_key="campus")
+    <div class="actions">{button("Get directions ↗",MAP)}{link("Ask Admissions →","mailto:"+EMAIL,"text-link")}</div></div>{photo("learning-together")}</div>''')+
+    section('<h2>Email directory</h2><dl class="directory">'+''.join(f'<div><dt>{label}</dt><dd>{link(email,"mailto:"+email)}</dd></div>' for label,email in directory)+'</dl>',"tint"),image_key="learning-together")
 
 standard("/privacy/","Website & registration privacy","Information for parents and guardians using this website and the school’s pre-registration link.","For families",
     section(f'''<div class="reading"><h2>Public website</h2><p>The public pages use no registration fields or analytics scripts. Contact links open your phone or email application.</p>
@@ -269,9 +264,9 @@ def document(path, title, summary, body, key, missing=False):
 <meta name="description" content="{e(summary)}">{meta}
 <meta property="og:type" content="website"><meta property="og:site_name" content="{NAME}">
 <meta property="og:title" content="{e(full_title)}"><meta property="og:description" content="{e(summary)}">
-<meta property="og:url" content="{e(canonical)}"><meta property="og:image" content="{e(ORIGIN)}/assets/{key}-960.webp">
-<link rel="icon" href="/assets/crest.png"><link rel="stylesheet" href="/styles.css?v=community-3">
-<script type="application/ld+json">{json.dumps(schema)}</script><script src="/navigation.js?v=community-3" defer></script>
+<meta property="og:url" content="{e(canonical)}"><meta property="og:image" content="{e(ORIGIN)}/assets/{key}-{PHOTO_LIBRARY[key]['widths'][-1]}.webp">
+<link rel="icon" href="/assets/crest.png"><link rel="stylesheet" href="/styles.css?v=community-4">
+<script type="application/ld+json">{json.dumps(schema)}</script><script src="/navigation.js?v=community-4" defer></script>
 </head><body>{header(path)}<main id="main" tabindex="-1">{body}</main>{footer()}{photo_viewer() if 'photo-open' in body else ''}</body></html>'''
 
 def build():
@@ -282,7 +277,7 @@ def build():
         target = DIST/path.strip("/")/"index.html"
         target.parent.mkdir(parents=True,exist_ok=True)
         target.write_text(document(path,title,summary,body,key),encoding="utf-8")
-    (DIST/"404.html").write_text(document("/404.html","Page not found","Find your way back to Champions Academy.",heading("Page not found","This address may have moved.","Champions Academy")+section(button("Return home","/")),"celebration",True),encoding="utf-8")
+    (DIST/"404.html").write_text(document("/404.html","Page not found","Find your way back to Champions Academy.",heading("Page not found","This address may have moved.","Champions Academy")+section(button("Return home","/")),"shared-joy",True),encoding="utf-8")
     (DIST/"_redirects").write_text("".join(f"{alias} {target} 301\n{alias.rstrip('/')} {target} 301\n" for alias,target in REDIRECTS.items()))
     urls = "".join(f"<url><loc>{e(ORIGIN+path)}</loc></url>" for path in PAGES)
     (DIST/"sitemap.xml").write_text(f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>')

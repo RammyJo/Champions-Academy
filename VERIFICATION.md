@@ -64,3 +64,7 @@ The Facebook collection could not be fully archived during this update. The user
 Normal builds remain dependency-free (`python build.py`). Re-running `prepare_media.py` or `verify_site.py` requires Pillow. Prepared image files are committed, so Pillow is not needed for a deployment build.
 
 Validation: the build generated 20 routes and a 404 page; `verify_site.py` checked all 21 HTML files, 893 local references, image decoding, unique IDs, canonical tags, and image dimensions. The navigation JavaScript passed Node syntax checking. Browser checks exercised the hero slideshow, all four gallery filters, photo previous/next, Escape dismissal and focus restoration, and mobile navigation. Representative pages were checked for horizontal overflow at mobile and desktop widths. No browser console errors were observed during those checks.
+
+## New-photo-only revision — November 20, 2026
+
+Removed all 22 old photo variants from both source assets and generated output. All page photos, CSS background photography, and Open Graph images now use the 16-photo Facebook library. Removed the three old performance gallery items and the empty Performances filter. The school logo is retained. The 21 generated HTML pages pass validation with 864 local references; an asset allowlist confirms that every published image belongs to the new library or is the school crest.

@@ -11,7 +11,7 @@ MISSION = "To honor God and deliver all His benefits by building a solid foundat
 
 PROGRAMS = {
     "/preschool/": {
-        "name": "Preschool", "stage": "Nursery & Kindergarten", "image": "preschool",
+        "name": "Preschool", "stage": "Nursery & Kindergarten", "image": "little-discoveries",
         "intro": "Young children learn by asking questions, trying things for themselves, and discovering what they can do together.",
         "areas": [
             ("Explore and create", "Children make sense of their world through hands-on discovery, movement, and creative expression."),
@@ -21,7 +21,7 @@ PROGRAMS = {
         "guidance": "Published guidance lists Nursery at age 4 and Kindergarten at age 5. Ask Admissions to confirm cut-off dates and placement for your child.",
     },
     "/grade-school/": {
-        "name": "Grade School", "stage": "Grades 1–6", "image": "student-performance",
+        "name": "Grade School", "stage": "Grades 1–6", "image": "digital-discovery",
         "intro": "Children build strong academic foundations and practice applying Christian values in their relationships and everyday choices.",
         "areas": [
             ("Read, reason, and communicate", "Learners develop comprehension and numeracy, explain what they think, and work through problems with others."),
@@ -31,7 +31,7 @@ PROGRAMS = {
         "guidance": "Contact Admissions for grade placement and the current document checklist.",
     },
     "/junior-high-school/": {
-        "name": "Junior High School", "stage": "Grades 7–10", "image": "junior-high",
+        "name": "Junior High School", "stage": "Grades 7–10", "image": "teachers-together",
         "intro": "Students deepen their faith, learn to think critically, and take greater responsibility for their work as they prepare for further education.",
         "areas": [
             ("Academic development", "Students apply foundational skills to more complex questions and practice explaining and evaluating ideas."),
@@ -42,16 +42,6 @@ PROGRAMS = {
     },
 }
 
-PHOTOS = {
-    "classroom-activity": ("Students in uniform working on activity sheets", 940/788),
-    "classroom-together": ("Students in uniform seated together in a Champions Academy classroom", 940/788),
-    "celebration": ("Champions Academy students in uniform gathered on stage", 3/2),
-    "student-performance": ("Students lined up on stage during a school presentation", 3/2),
-    "school-event": ("A group of students on stage at a Champions Academy event", 3/2),
-    "junior-high": ("Students and an adult in a Champions Academy classroom", 1024/879),
-    "campus": ("Champions Academy sign above the school entrance", 4/3),
-    "preschool": ("Young learners gathered around a yellow classroom table", 4/3),
-}
 
 REQUIREMENTS = [
     ("Online registration form", "Complete the school’s Google Form using the pre-registration page."),
@@ -76,7 +66,3 @@ ARCHIVE = [
     ("2017-10-18", "benchmarking-trip-to-make-things-better", "A school learning visit", "School leaders visited Life College in Palawan and reflected on staff collaboration, teacher development, and parent communication."),
 ]
 
-PHOTO_WIDTHS = {
-    "classroom-activity": (480, 940),
-    "classroom-together": (480, 940),
-}
