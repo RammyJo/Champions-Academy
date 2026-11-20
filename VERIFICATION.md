@@ -68,3 +68,9 @@ Validation: the build generated 20 routes and a 404 page; `verify_site.py` check
 ## New-photo-only revision — November 20, 2026
 
 Removed all 22 old photo variants from both source assets and generated output. All page photos, CSS background photography, and Open Graph images now use the 16-photo Facebook library. Removed the three old performance gallery items and the empty Performances filter. The school logo is retained. The 21 generated HTML pages pass validation with 864 local references; an asset allowlist confirms that every published image belongs to the new library or is the school crest.
+
+## Image quality revision — November 20, 2026
+
+Replaced the 414px Facebook preview sources with larger 940px copies obtained from the same public Facebook photo pages. Removed four weak shots (photo IDs 1745987280861191, 1745987180861201, 1745986937527892, and 1745986914194561) due to lighting, motion, or softness. The public library now contains 12 photos, including the existing 940px storytelling photo. The original legacy website photos remain excluded.
+
+All published photo sources are at least 940px wide before resizing, with no upscaling or synthesized detail. Responsive derivatives are 480/768/940px WebP at quality 91. Removed all former 320/414px files and former preview JPEGs. The build emits 20 routes plus 404; all 21 HTML files, 884 local references, and all image files pass validation. The validator rejects sources below 900px and obsolete/unapproved assets.

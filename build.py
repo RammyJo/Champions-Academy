@@ -209,7 +209,7 @@ standard("/pre-register/","Pre-registration","Parents and guardians can start th
     {link("Review requirements →","/requirements/","text-link")}{link("Registration privacy →","/privacy/","text-link")}{link("Email Admissions →","mailto:"+EMAIL,"text-link")}</aside></div>'''),("Admissions","/admissions/"))
 
 school_gallery = '<div class="gallery-filters" hidden role="group" aria-label="Filter school photographs">' + ''.join(f'<button type="button" data-filter="{label}" aria-pressed="{str(label == "All moments").lower()}">{label}</button>' for label in ["All moments", "Learning", "Together"]) + '</div><p class="gallery-count" aria-live="polite"></p>'
-school_gallery += '<div class="moments-grid all-moments">' + ''.join(moment_card(key) for key in ["finding-voice", "bright-smile", "little-discoveries", "shared-joy", "digital-discovery", "teachers-together", "joyful-classroom", "screen-skills", "arriving-together", "storytelling", "hands-up", "classmates", "learning-together", "ready-to-join", "classroom-welcome", "classroom-connection"]) + '</div>'
+school_gallery += '<div class="moments-grid all-moments">' + ''.join(moment_card(key) for key in ["finding-voice", "bright-smile", "little-discoveries", "shared-joy", "digital-discovery", "teachers-together", "joyful-classroom", "screen-skills", "storytelling", "classmates", "learning-together", "classroom-welcome"]) + '</div>'
 standard("/school-life/","This is life at Champions.","The small discoveries, shared smiles, and moments of courage that make a school community.","Campus & community",
     section('<div class="section-intro"><div>'+kicker("Our community, in pictures")+'<h2>Everyday moments.<br><em>Lasting meaning.</em></h2></div><p>Explore the photographs. Open a moment to take a closer look.</p></div>'+school_gallery, "life-section")+
     section(f'<div class="social-story"><div>{kicker("Keep in touch")}<h2>There is more<br>to the story.</h2><p>Find more photographs, school videos, and current updates on the official Champions Academy Facebook page.</p>{button("Visit our Facebook page", FACEBOOK)}</div><figure>{photo("learning-together")}<figcaption>Learning and growing together at Champions Academy.</figcaption></figure></div>',"tint")+invitation(),image_key="joyful-classroom")
@@ -265,8 +265,8 @@ def document(path, title, summary, body, key, missing=False):
 <meta property="og:type" content="website"><meta property="og:site_name" content="{NAME}">
 <meta property="og:title" content="{e(full_title)}"><meta property="og:description" content="{e(summary)}">
 <meta property="og:url" content="{e(canonical)}"><meta property="og:image" content="{e(ORIGIN)}/assets/{key}-{PHOTO_LIBRARY[key]['widths'][-1]}.webp">
-<link rel="icon" href="/assets/crest.png"><link rel="stylesheet" href="/styles.css?v=community-4">
-<script type="application/ld+json">{json.dumps(schema)}</script><script src="/navigation.js?v=community-4" defer></script>
+<link rel="icon" href="/assets/crest.png"><link rel="stylesheet" href="/styles.css?v=quality-1">
+<script type="application/ld+json">{json.dumps(schema)}</script><script src="/navigation.js?v=quality-1" defer></script>
 </head><body>{header(path)}<main id="main" tabindex="-1">{body}</main>{footer()}{photo_viewer() if 'photo-open' in body else ''}</body></html>'''
 
 def build():

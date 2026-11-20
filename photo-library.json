@@ -4,18 +4,19 @@
     "category": "Learning",
     "caption": "A classroom full of possibilities",
     "widths": [
-      320,
-      414
+      480,
+      768,
+      940
     ],
-    "width": 414,
-    "height": 279,
+    "width": 940,
+    "height": 530,
     "source": "https://www.facebook.com/photo.php?fbid=1745987390861180",
     "original": "photo-06.jpg",
     "crop": [
       0,
-      68,
-      414,
-      347
+      129,
+      940,
+      659
     ]
   },
   "learning-together": {
@@ -23,18 +24,19 @@
     "category": "Together",
     "caption": "Learning alongside one another",
     "widths": [
-      320,
-      414
+      480,
+      768,
+      940
     ],
-    "width": 414,
-    "height": 279,
+    "width": 940,
+    "height": 530,
     "source": "https://www.facebook.com/photo.php?fbid=1745987340861185",
     "original": "photo-07.jpg",
     "crop": [
       0,
-      68,
-      414,
-      347
+      129,
+      940,
+      659
     ]
   },
   "finding-voice": {
@@ -42,37 +44,19 @@
     "category": "Learning",
     "caption": "The courage to take part",
     "widths": [
-      320,
-      414
+      480,
+      768,
+      940
     ],
-    "width": 414,
-    "height": 414,
+    "width": 940,
+    "height": 788,
     "source": "https://www.facebook.com/photo.php?fbid=1745987294194523",
     "original": "photo-08.jpg",
     "crop": [
       0,
       0,
-      414,
-      414
-    ]
-  },
-  "arriving-together": {
-    "alt": "Two young students with backpacks beside an adult at a doorway",
-    "category": "Together",
-    "caption": "A new day, together",
-    "widths": [
-      320,
-      414
-    ],
-    "width": 414,
-    "height": 414,
-    "source": "https://www.facebook.com/photo.php?fbid=1745987280861191",
-    "original": "photo-09.jpg",
-    "crop": [
-      0,
-      0,
-      414,
-      414
+      940,
+      788
     ]
   },
   "bright-smile": {
@@ -80,18 +64,19 @@
     "category": "Together",
     "caption": "Little moments of confidence",
     "widths": [
-      320,
-      414
+      480,
+      768,
+      940
     ],
-    "width": 414,
-    "height": 414,
+    "width": 940,
+    "height": 788,
     "source": "https://www.facebook.com/photo.php?fbid=1745987244194528",
     "original": "photo-10.jpg",
     "crop": [
       0,
       0,
-      414,
-      414
+      940,
+      788
     ]
   },
   "joyful-classroom": {
@@ -99,37 +84,19 @@
     "category": "Together",
     "caption": "Joy that fills a classroom",
     "widths": [
-      320,
-      414
+      480,
+      768,
+      940
     ],
-    "width": 414,
-    "height": 298,
+    "width": 940,
+    "height": 566,
     "source": "https://www.facebook.com/photo.php?fbid=1745987197527866",
     "original": "photo-11.jpg",
     "crop": [
       0,
-      58,
-      414,
-      356
-    ]
-  },
-  "classroom-connection": {
-    "alt": "Students and a teacher waving from their classroom",
-    "category": "Together",
-    "caption": "A place to belong",
-    "widths": [
-      320,
-      414
-    ],
-    "width": 414,
-    "height": 312,
-    "source": "https://www.facebook.com/photo.php?fbid=1745987180861201",
-    "original": "photo-12.jpg",
-    "crop": [
-      0,
-      51,
-      414,
-      363
+      111,
+      940,
+      677
     ]
   },
   "shared-joy": {
@@ -137,18 +104,19 @@
     "category": "Together",
     "caption": "Better when we are together",
     "widths": [
-      320,
-      414
+      480,
+      768,
+      940
     ],
-    "width": 414,
-    "height": 414,
+    "width": 940,
+    "height": 788,
     "source": "https://www.facebook.com/photo.php?fbid=1745987157527870",
     "original": "photo-13.jpg",
     "crop": [
       0,
       0,
-      414,
-      414
+      940,
+      788
     ]
   },
   "digital-discovery": {
@@ -156,18 +124,19 @@
     "category": "Learning",
     "caption": "Curiosity in action",
     "widths": [
-      320,
-      414
+      480,
+      768,
+      940
     ],
-    "width": 414,
-    "height": 312,
+    "width": 940,
+    "height": 592,
     "source": "https://www.facebook.com/photo.php?fbid=1745987107527875",
     "original": "photo-14.jpg",
     "crop": [
       0,
-      51,
-      414,
-      363
+      98,
+      940,
+      690
     ]
   },
   "screen-skills": {
@@ -175,18 +144,19 @@
     "category": "Learning",
     "caption": "Discovering new ways to learn",
     "widths": [
-      320,
-      414
+      480,
+      768,
+      940
     ],
-    "width": 414,
-    "height": 328,
+    "width": 940,
+    "height": 623,
     "source": "https://www.facebook.com/photo.php?fbid=1745987087527877",
     "original": "photo-15.jpg",
     "crop": [
       0,
-      41,
-      414,
-      369
+      79,
+      940,
+      702
     ]
   },
   "little-discoveries": {
@@ -194,18 +164,19 @@
     "category": "Learning",
     "caption": "Small hands, big curiosity",
     "widths": [
-      320,
-      414
+      480,
+      768,
+      940
     ],
-    "width": 414,
-    "height": 414,
+    "width": 940,
+    "height": 788,
     "source": "https://www.facebook.com/photo.php?fbid=1745987064194546",
     "original": "photo-16.jpg",
     "crop": [
       0,
       0,
-      414,
-      414
+      940,
+      788
     ]
   },
   "classmates": {
@@ -213,18 +184,19 @@
     "category": "Together",
     "caption": "Growing with friends",
     "widths": [
-      320,
-      414
+      480,
+      768,
+      940
     ],
-    "width": 414,
-    "height": 310,
+    "width": 940,
+    "height": 590,
     "source": "https://www.facebook.com/photo.php?fbid=1745987007527885",
     "original": "photo-17.jpg",
     "crop": [
       0,
-      52,
-      414,
-      362
+      99,
+      940,
+      689
     ]
   },
   "teachers-together": {
@@ -232,56 +204,19 @@
     "category": "Together",
     "caption": "Learning is a shared journey",
     "widths": [
-      320,
-      414
+      480,
+      768,
+      940
     ],
-    "width": 414,
-    "height": 326,
+    "width": 940,
+    "height": 621,
     "source": "https://www.facebook.com/photo.php?fbid=1745986960861223",
     "original": "photo-18.jpg",
     "crop": [
       0,
-      44,
-      414,
-      370
-    ]
-  },
-  "ready-to-join": {
-    "alt": "Children smiling and waving from their classroom desks",
-    "category": "Learning",
-    "caption": "Ready to join in",
-    "widths": [
-      320,
-      414
-    ],
-    "width": 414,
-    "height": 332,
-    "source": "https://www.facebook.com/photo.php?fbid=1745986937527892",
-    "original": "photo-19.jpg",
-    "crop": [
-      0,
-      41,
-      414,
-      373
-    ]
-  },
-  "hands-up": {
-    "alt": "Young students raising their hands in a classroom",
-    "category": "Learning",
-    "caption": "Every voice has a place",
-    "widths": [
-      320,
-      414
-    ],
-    "width": 414,
-    "height": 302,
-    "source": "https://www.facebook.com/photo.php?fbid=1745986914194561",
-    "original": "photo-20.jpg",
-    "crop": [
-      0,
-      56,
-      414,
-      358
+      83,
+      940,
+      704
     ]
   },
   "storytelling": {
@@ -289,7 +224,8 @@
     "category": "Learning",
     "caption": "Bringing a story to life",
     "widths": [
-      320,
+      480,
+      768,
       940
     ],
     "width": 940,

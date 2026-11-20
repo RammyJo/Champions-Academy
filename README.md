@@ -35,14 +35,14 @@ The default canonical origin is `https://champions.edu.ph`. To intentionally cha
 
 ## Latest revisions
 
-The current snapshot includes the simplified homepage, soft dimensional styling, animated navigation and interaction feedback, manual hero gallery, reduced-motion support, and two newer classroom photographs from the official Facebook page. Extra shortlisted media are retained separately.
+The current snapshot uses 12 reviewed, larger Facebook photographs throughout the homepage, programs, school-life gallery, About, Contact, and social previews. It includes responsive images, a manual hero slideshow, an accessible photo viewer, gallery filters, and reduced-motion support.
 
 School branding and photographs remain the property of their respective owners. No open-source license is granted for those assets by this repository.
 
 ## Community photo library
 
-The photo-led homepage and School Life gallery use reviewed photographs from the school's Facebook page, with original sources and crop metadata in `photo-library.json`. All 16 locally available Facebook candidates are retained in `media-library/facebook-shortlist/`; the public gallery uses only these 16 new Facebook photos. This is a curated local collection, not a complete Facebook archive.
+The site uses 12 reviewed photographs from the school's Facebook page. Larger JPEG sources (940 pixels wide) are stored in `media-library/facebook-originals/`; source URLs and crop metadata are recorded in `photo-library.json`. The former 414-pixel thumbnails and four visually weak photographs have been removed. This is a curated collection, not a complete Facebook archive.
 
-Build with `python build.py`. To re-prepare source photos, install Pillow and run `python prepare_media.py`. Run `python verify_site.py` (Pillow required) and `node --check static/navigation.js` before deployment. Source images are never upscaled; seek original high-resolution files before enlarging the smaller cards.
+The image pipeline produces 480px, 768px, and 940px WebP variants at quality 91 without upscaling. It trims external white letterboxing only. The school crest remains the logo.
 
-The current release removes all 22 old photo variants from source assets and generated output. Hero, programs, About, Contact, background photography, gallery, and social-sharing images now use only the new Facebook selection. The school crest remains the brand logo.
+Build with `python build.py`. To re-prepare source photos, install Pillow and run `python prepare_media.py`. Run `python verify_site.py` (Pillow required) and `node --check static/navigation.js` before deployment. Verification rejects photo sources under 900px wide and any image file outside the approved library. All page photos, backgrounds, and social-sharing images use this library.

@@ -49,10 +49,14 @@ def verify():
     for image in (DIST / "assets").iterdir():
         with Image.open(image) as data: data.verify()
     library = json.loads((ROOT / "photo-library.json").read_text())
+    allowed_assets = {"crest.png"}
     for key, record in library.items():
+        assert record["width"] >= 900, (key, "Source is too small for publication")
         for width in record["widths"]:
+            allowed_assets.add(f"{key}-{width}.webp")
             with Image.open(DIST / "assets" / f"{key}-{width}.webp") as data:
                 assert data.width == width <= record["width"], (key, "Unexpected scaling")
+    assert {path.name for path in (DIST / "assets").iterdir()} == allowed_assets, "Unreviewed or obsolete image assets"
     print(f"PASS: {len(list(DIST.rglob('*.html')))} HTML pages, {checked} local references, all images decode, {len(library)} source records")
 
 
